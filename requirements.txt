@@ -1,4 +1,3 @@
-rich
 ciscoaxl
 flask
 flask_simplelogin
