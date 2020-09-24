@@ -2,12 +2,10 @@
 FROM python:3.7
 LABEL maintainer="bzoellers@ddaftech.com"
 
-# Use current directory
-WORKDIR /src
-
 # Commands to execute after container is deployed
-COPY requirements.txt /src/requirements.txt
+COPY requirements.txt /requirements.txt
 RUN pip install -r requirements.txt
+WORKDIR /src
 
 # Expose flasks default HTTP port
 EXPOSE 5000/tcp
