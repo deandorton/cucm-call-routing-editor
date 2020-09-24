@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+{% block head %}
+<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/login.css') }}">
+{% endblock %}
+{% block content %}
+<div class="container" id="login">
+  <form class="form-signin" action="{{ url_for('simplelogin.login', next=request.args.get('next', '/')) }}" method="post">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+    {{ form.csrf_token }}
+    <input type="text" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+    <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  </form>
+</div>
+
+    {{super()}}
+      {%if form.errors %}
+        <ul class="alert alert-danger">
+          {% for field, errors in form.errors.items() %}
+            <li>{{field}} {% for error in errors %}{{ error }}{% endfor %}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+       
+{% endblock %}
