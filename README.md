@@ -29,7 +29,7 @@ A simple call routing editor for Cisco CUCM
   ],
   "CalledPartyTransformationMasks": {
     "Destination 1": "3930",
-    "Destination 2": "3931",
+    "Destination 2": "3931"
   }
 }
 ```
