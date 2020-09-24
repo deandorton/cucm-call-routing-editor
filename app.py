@@ -71,7 +71,7 @@ def index():
     }
     friendly_patterns.append(friendly_pattern)
   
-  return render_template("index.html", patterns=friendly_patterns, allowed_dests=allowed_dests, warning=warning, edit_text=alert_text)
+  return render_template("index.html", patterns=friendly_patterns, allowed_dests=allowed_dests, warning=warning, edit_text=alert_text, cucm_host=cucm)
 
 @app.route('/', methods=["POST"])
 @login_required
@@ -88,7 +88,10 @@ def index_post():
       warning = True
       edit_text = change['error']
     else:
-      edit_text = f"{change['uuid']} updated from {change['oldmask']} to {change['newmask']}"
+      pattern = get_translation_patterns_with_uuids(ucm=ucm, uuids=[change['uuid']])[0]
+      oldmask_name = allowed_dest_for_value(dest=change['oldmask'], allowed_dests=allowed_dests)
+      newmask_name = allowed_dest_for_value(dest=change['newmask'], allowed_dests=allowed_dests)
+      edit_text = f"{pattern['description']} updated from {oldmask_name} ({change['oldmask']}) to {newmask_name} ({change['newmask']})"
 
   session['warning'] = warning
   session['alert_text'] = edit_text

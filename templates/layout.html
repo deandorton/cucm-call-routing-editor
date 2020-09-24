@@ -14,8 +14,13 @@
   </head>
   <body>
     <div class="container">
-      <nav class="navbar navbar-light bg-light">
+      <nav class="navbar navbar-dark bg-primary">
         <span class="navbar-brand mb-0 h1">Cisco Call Routing Editor</span>
+        {% if is_logged_in() %}
+        <span class="navbar-text">
+          CUCM: {{cucm_host}} | <a href="{{ url_for('simplelogin.logout') }}">Logout</a>
+        </span>
+        {% endif %}
       </nav>
       {% block content %}{% endblock %}
     </div>
