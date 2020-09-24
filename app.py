@@ -5,7 +5,7 @@ CUCM Call Routing Editor
   A simple call routing editor for Cisco CUCM
 """
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for, session
 from flask_simplelogin import SimpleLogin, login_required
 from cucm_helper import get_ucm, get_translation_patterns_with_uuids, update_translation_pattern_called_party_mask
 from app_helper import is_allowed_uuid, is_allowed_dest, allowed_dest_for_value
@@ -43,26 +43,23 @@ with open(path, "r") as handle:
 allowed_uuids = data['TranslationPatternUUIDs']
 allowed_dests = data['CalledPartyTransformationMasks']
 
-@app.route('/', methods=["GET", "POST"])
+@app.route('/', methods=["GET"])
 @login_required
 def index():
-  edit_text = False
-  warning = False
-  if request.method == "POST":
-    uuid = request.form["uuid"]
-    dest = request.form["dest"]
+  # Get session variables for alert box
+  if session.get('warning'):
+    warning = session.get('warning')
+    session.pop('warning')
+  else:
+    warning = False
+  if session.get('alert_text'):
+    alert_text = session.get('alert_text')
+    session.pop('alert_text')
+  else:
+    alert_text = False
 
-    if dest:
-      change = change_pattern(uuid=uuid, newmask=dest)
-
-      if ("error" in change):
-        warning = True
-        edit_text = change['error']
-      else:
-        edit_text = f"{change['uuid']} updated from {change['oldmask']} to {change['newmask']}"
-
+  # Get list of patterns from UUIDs in data.json, translate them into a readable list
   patterns = get_translation_patterns_with_uuids(ucm=ucm, uuids=allowed_uuids)
-
   friendly_patterns = []
   for pattern in patterns:
     friendly_pattern = {
@@ -74,7 +71,29 @@ def index():
     }
     friendly_patterns.append(friendly_pattern)
   
-  return render_template("index.html", patterns=friendly_patterns, allowed_dests=allowed_dests, warning=warning, edit_text=edit_text)
+  return render_template("index.html", patterns=friendly_patterns, allowed_dests=allowed_dests, warning=warning, edit_text=alert_text)
+
+@app.route('/', methods=["POST"])
+@login_required
+def index_post():
+  edit_text = False
+  warning = False
+  uuid = request.form["uuid"]
+  dest = request.form["dest"]
+
+  if dest:
+    change = change_pattern(uuid=uuid, newmask=dest)
+
+    if ("error" in change):
+      warning = True
+      edit_text = change['error']
+    else:
+      edit_text = f"{change['uuid']} updated from {change['oldmask']} to {change['newmask']}"
+
+  session['warning'] = warning
+  session['alert_text'] = edit_text
+  return redirect(url_for('index'))
+    
 
 ## Change pattern and return message
 def change_pattern(uuid, newmask):
