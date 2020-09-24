@@ -1,0 +1,10 @@
+{
+  "TranslationPatternUUIDs": [
+    "f5c217a8-41e5-ca31-ab6e-62c2",
+    "47254316-7faa-19eb-06d5-42fa821750eb"
+  ],
+  "CalledPartyTransformationMasks": {
+    "Destination 1": "3930",
+    "Destination 2": "3931",
+  }
+}

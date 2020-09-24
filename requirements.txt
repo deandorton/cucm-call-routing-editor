@@ -1,0 +1,6 @@
+rich
+ciscoaxl
+flask
+flask_simplelogin
+zeep
+python-dotenv

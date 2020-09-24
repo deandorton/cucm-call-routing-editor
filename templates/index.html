@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+{% block content %}
+      {% if edit_text %}
+      <br />
+      <div class="alert alert-{% if warning %}danger{% else %}primary{% endif %}" role="alert">
+        {{ edit_text }}
+      </div>
+      {% endif %}
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Current Destination</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for pattern in patterns %}
+            <tr>
+              <td>
+                {{ pattern.description }} ({{ pattern.pattern }})
+              </td>
+              <td>
+                {{ pattern.destination_name }} ({{ pattern.destination }})
+              </td>
+              <td>
+                <form class="form-inline" action="" method="post">
+                  <select class="custom-select my-1 mr-sm-2" name="dest">
+                    <option selected>Edit Destination...</option>
+                    {% for key,value in allowed_dests.items() %}
+                      <option value="{{ value }}">{{ key }}</option>
+                    {% endfor %}
+                  </select>
+                  <input type="hidden" name="uuid" value="{{ pattern.uuid }}">
+                  <button type="submit" class="btn btn-primary my-1">Change</button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+
+        </tbody>
+      </table>
+{% endblock %}
