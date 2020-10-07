@@ -1,8 +1,8 @@
 """
-CUCM Call Routing Editor / app_helper.py
-  Author: Billy Zoellers, Dean Dorton
+CUCM Call Routing Editor - A simple call routing editor for Cisco CUCM
+Copyright (C) 2020  Billy Zoellers, Dean Dorton Allen Ford, PLLC
 
-  Helper functions for main app functions
+  app_helper.py / Helper functions for main app functions
 """
 
 def is_allowed_uuid(uuid, allowed_uuids):

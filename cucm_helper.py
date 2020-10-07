@@ -1,8 +1,8 @@
 """
-CUCM Call Routing Editor / cucm_helper.py
-  Author: Billy Zoellers, Dean Dorton
+CUCM Call Routing Editor - A simple call routing editor for Cisco CUCM
+Copyright (C) 2020  Billy Zoellers, Dean Dorton Allen Ford, PLLC
 
-  Helper functions for CUCM AXL API operations
+  cucm_helper.py / Helper functions for CUCM AXL API operations
 """
 from ciscoaxl import axl
 from zeep.exceptions import Fault
