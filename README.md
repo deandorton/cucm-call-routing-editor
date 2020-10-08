@@ -3,15 +3,17 @@
 
 A simple call routing editor for Cisco CUCM
 
-**Purpose:** Provide CUCM power users an easy to user interface to modify the calledPartyTransformationMasks for a set of Translation Patterns in CUCM. Sites or services that might need routing changes can be assigned as Translation Patterns, and possible destinations can be assigned as calledPartyTransformationMasks.
+## Purpose
+Provide CUCM power users an easy to user interface to modify the calledPartyTransformationMasks for a set of Translation Patterns in CUCM. Sites or services that might need routing changes can be assigned as Translation Patterns, and possible destinations can be assigned as calledPartyTransformationMasks.
 
 ![Cisco Call Routing Editor web interface](screenshot.png)
 
 ## Installation
-1. Install Docker and Docker Compose
+1. Install [Docker](https://duo.com/docs/dag-linux#install-docker) and [Docker Compose](https://duo.com/docs/dag-linux#install-docker-compose).
+*Note: You should ONLY follow those specific documentation sections.*
 2. Download this repository, either as a ZIP file or by using `git pull`
 3. Create a `data.json` file following the specifications below, or by coping `data-sample.json`
-4. Create a `.env` file with the appropriate enviornment variables for you enviornment
+4. Fill in the `.env` file with appropriate values for your enviornment. *See specifications below*
 5. Run `docker-compose -p cucm-routing-editor up -d`
 
 ### Enviornment Variables
@@ -37,6 +39,9 @@ A simple call routing editor for Cisco CUCM
 }
 ```
 A sample file can be found at *data-sample.json*
+
+## Testing
+For a free and easy to use testing enviornment, use the Cisco DevNet Sandbox [Collaboration 12.5](https://devnetsandbox.cisco.com/RM/Diagram/Index/803ec3d3-ab55-4c59-99d0-d3a4dd4233eb?diagramType=Topology) topology.
 
 ## License
 Copyright (C) 2020  Billy Zoellers, Dean Dorton Allen Ford, PLLC
