@@ -17,6 +17,8 @@ def get_translation_patterns_with_uuids(ucm, uuids):
 
   for uuid in uuids:
     pattern = ucm.get_translation(uuid=uuid)
+    if isinstance(pattern, Fault):
+      raise Exception(pattern)
     patterns.append(pattern["return"]["transPattern"])
 
   return patterns

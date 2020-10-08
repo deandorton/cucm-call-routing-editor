@@ -64,7 +64,10 @@ def index():
     alert_text = False
 
   # Get list of patterns from UUIDs in data.json, translate them into a readable list
-  patterns = get_translation_patterns_with_uuids(ucm=ucm, uuids=allowed_uuids)
+  try:
+    patterns = get_translation_patterns_with_uuids(ucm=ucm, uuids=allowed_uuids)
+  except Exception as err:
+    return render_template("error.html", error_alert=err, error_message='Please check connection parameters.', cucm_host='not connected')
   friendly_patterns = []
   for pattern in patterns:
     friendly_pattern = {
