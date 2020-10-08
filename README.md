@@ -13,7 +13,7 @@ Provide CUCM power users an easy to user interface to modify the calledPartyTran
 *Note: You should ONLY follow those specific documentation sections.*
 2. Download this repository, either as a ZIP file or by using `git pull`
 3. Create a `data.json` file following the specifications below, or by coping `data-sample.json`
-4. Fill in the `.env` file with appropriate values for your enviornment. *See specifications below*
+4. Create a `.env` file following the specifications below, or by coping `.env-sample`
 5. Run `docker-compose -p cucm-routing-editor up -d`
 
 ### Enviornment Variables
@@ -46,9 +46,6 @@ For a free and easy to use testing enviornment, use the Cisco DevNet Sandbox [Co
 ## License
 Copyright (C) 2020  Billy Zoellers, Dean Dorton Allen Ford, PLLC
 
-This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License 
-as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
-This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty 
-of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more details.
-You should have received a copy of the GNU General Public License along with this program.
-If not, see <http://www.gnu.org/licenses/>.
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License along with this program. If not, see <http://www.gnu.org/licenses/>.
